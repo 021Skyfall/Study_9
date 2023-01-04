@@ -101,6 +101,7 @@ class Check {
         System.out.println(Season.WINTER == Season.valueOf("FALL")); // 아 이런식으로 비교해서 boolean 출력할 때 쓰는 듯
         // 보통 이건 어따쓰지?싶은것들은 대부분 boolean 출력하기 위함이더리
         System.out.println(Arrays.toString(Season.values())); // Enum 객체를 배열로 만듦
+
     }
 
 }
