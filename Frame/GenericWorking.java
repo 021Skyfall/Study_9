@@ -45,23 +45,29 @@ class Basket<T> { // << 제네릭 클래스 / <T> = 타입 매개변수 선언
     public void setItem(T item) {
         this.item = item;
     }
-}
-public class GenericWorking {
-    public static void main(String[] args) {
-//        Basket<String> basket = new Basket<String>("쟈가쟝");
-//        System.out.println(basket.getItem()); // 문자열로
-//
-//        Basket<Integer> basket1 = new Basket<Integer>(1);
-//        System.out.println(basket1.getItem()); // 정수로
-
-        Basket<Flower> flowerBasket = new Basket<>(); // << Flower를 타입 매개변수로 입력
-        flowerBasket.setItem(new Rose()); // Rose는 상속 받는 관계이기 때문에 Flower를 타입 매개변수로 쓰는 Basket의 기능을 이용 할 수 있음
-//        flowerBasket.setItem(new RosePasta()); // Flower의 상속을 받지 않는 클래스는 오류
-        Space<Earth> earthSpace = new Space<>(); // Sun의 하위 클래스인 Earth 가능
-//        Space<Pluto> plutoSpace = new Space<>(); // 임의 지정해서 상위나 하위가 아닌 영 다른 클래스는 오류
-
+    public <T> void getPrint(T item) {
+//        System.out.println(item.length()); << 오류남 // T 정의 할 수 없데
+        System.out.println(item.toString());
+        System.out.println(item.equals(true)); // << 최상위 클래스인 Object 의 메소드는 가능
     }
 }
+//public class GenericWorking {
+//    public static void main(String[] args) {
+////        Basket<String> basket = new Basket<String>("쟈가쟝");
+////        System.out.println(basket.getItem()); // 문자열로
+////
+////        Basket<Integer> basket1 = new Basket<Integer>(1);
+////        System.out.println(basket1.getItem()); // 정수로
+//
+//        Basket<Flower> flowerBasket = new Basket<>(); // << Flower를 타입 매개변수로 입력
+//        flowerBasket.setItem(new Rose()); // Rose는 상속 받는 관계이기 때문에 Flower를 타입 매개변수로 쓰는 Basket의 기능을 이용 할 수 있음
+////        flowerBasket.setItem(new RosePasta()); // Flower의 상속을 받지 않는 클래스는 오류
+//        Space<Earth> earthSpace = new Space<>(); // Sun의 하위 클래스인 Earth 가능
+////        Space<Pluto> plutoSpace = new Space<>(); // 임의 지정해서 상위나 하위가 아닌 영 다른 클래스는 오류
+//
+//
+//    }
+//}
 
 class Flower {}
 class Rose extends Flower{}
@@ -87,3 +93,72 @@ class Pluto {}
     }
 } // 결과는 위에
 // << 마찬가지로 인터페이스도 동일한 방식으로 임의 조정 가능함
+
+class Phone {
+}
+
+class Iphone extends Phone {}
+class galaxy extends Phone {}
+
+class Iphone15pro extends Iphone {}
+class Iphone15max extends Iphone {}
+
+class S22 extends galaxy {}
+class Zflip extends galaxy {}
+
+class User<T> {
+    T phone;
+
+    public User(T phone) {
+        this.phone = phone;
+    }
+}
+class PhoneFunction {
+    public static void call(User<? extends Phone>user) { // < Phone 과 Phone 을 상속받는 클래스만
+        System.out.println("-".repeat(30));
+        System.out.println(user.phone.getClass().getSimpleName());
+        System.out.println("모든 Phone 통화 가능");
+    }
+    public static void faceId(User<? extends Iphone>user) {
+        System.out.println("-".repeat(30));
+        System.out.println(user.phone.getClass().getSimpleName());
+        System.out.println("Iphone만 얼굴 인식 가능");
+    }
+    public static void samsunPay(User<? extends galaxy>user) {
+        System.out.println("-".repeat(30));
+        System.out.println(user.phone.getClass().getSimpleName());
+        System.out.println("Galaxy만 삼성페이 가능");
+    }
+    public static void recordVoice(User<? extends galaxy>user) {
+        System.out.println("-".repeat(30));
+        System.out.println(user.phone.getClass().getSimpleName());
+        System.out.println("Galaxy만 통화 녹음 가능");
+    }
+}
+
+public class GenericWorking {
+    public static void main(String[] args) {
+        PhoneFunction.call(new User<Phone>(new Phone()));
+        PhoneFunction.call(new User<>(new Iphone()));
+        PhoneFunction.call(new User<>(new galaxy()));
+//        ... // phone의 상속을 받는 모든 하위 클래스들이 User의 매개변수로 입력되어 call 메소드 호출 가능
+        PhoneFunction.faceId(new User<>(new Iphone()));
+//        PhoneFunction.faceId(new User<>(new galaxy())); << 불가능
+//        매개변수로 들어갈 수 있는 user의 타입을 Iphone 만으로 지정했기 때문에
+        // 갤럭시에서는 출력 불가
+//        PhoneFunction.faceId(new User<>(new Phone()));
+        // Iphone 의 상위 타입도 안됨
+        // 이는 아이폰 자기 자신과 아이폰의 하위 타입만을 타입 매개변수로 가지게끔 설정했기 때문
+
+//        이하 마찬가지
+        //        PhoneFunction.samsungPay(new User<Phone>(new Phone())); // X
+//        PhoneFunction.samsungPay(new User<IPhone>(new IPhone())); // X
+//        PhoneFunction.samsungPay(new User<IPhone12Pro>(new IPhone12Pro())); // X
+//        PhoneFunction.samsungPay(new User<IPhoneXS>(new IPhoneXS())); // X
+        PhoneFunction.samsunPay(new User<galaxy>(new galaxy()));
+        PhoneFunction.samsunPay(new User<S22>(new S22()));
+        PhoneFunction.samsunPay(new User<>(new Zflip()));
+        // ...
+
+    }
+}
