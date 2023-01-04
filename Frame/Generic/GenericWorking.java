@@ -1,4 +1,4 @@
-package Frame;
+package Frame.Generic;
 
 class GenericWorking1 {
     private String item; // 구체적인 타입 지정

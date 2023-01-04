@@ -1,4 +1,4 @@
-package Frame;
+package Frame.Enum;
 
 import java.util.Arrays;
 
