@@ -8,8 +8,9 @@ public class d_addEvenValues {
 // 짝수 값(Value) 끼리 모두 더한 값을 리턴해야 합니다.
 //        Collection<Integer> value = hashMap.values();
 //        // Collection 으로 hashmap 의 value 객체만 형변환 후 불러옴
+//        근데 형변환 하기 싫으면 걍 밑에 처럼 for-each 쓰면 됨
 //        int x = 0;
-//        for (int i : value) {
+//        for (int i : hashMap.values()) {
 //            if(i%2 == 0) {
 //                x += i;
 //            }
@@ -18,6 +19,9 @@ public class d_addEvenValues {
         //value 객체로 순회
 
         // or
+//        Set<Character> keySet = hashMap.keySet();
+//        Iterator<Character> it = keySet.iterator();
+//        위에 형변환 달고 하려면 아래 for-each 가 아니라 while 로 하면 됨 < 맨 밑에
 //        int x = 0;
 //        for (Character key: hashMap.keySet()) { // 바로 key 값으로 순회 가능
 //            Integer value = hashMap.get(key); // 그런 다음 해당 키의 value 객체만 뽑아옴
