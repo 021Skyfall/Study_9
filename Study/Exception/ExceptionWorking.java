@@ -1,8 +1,4 @@
-package Frame.Exception;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.Arrays;
+package Study.Exception;
 
 public class ExceptionWorking {
     public static void main(String[] args) {

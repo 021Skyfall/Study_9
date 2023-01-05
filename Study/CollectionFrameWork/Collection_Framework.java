@@ -1,4 +1,4 @@
-package Frame.CollectionFrameWork;
+package Study.CollectionFrameWork;
 
 import java.util.*;
 
