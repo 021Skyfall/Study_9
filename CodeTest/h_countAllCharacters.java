@@ -24,7 +24,7 @@ public class h_countAllCharacters {
             // 무조건 false ~> else로 들어감
             // 그 다음 중복이 있으면 맨 처음 꺼는 else 로 들어갔다가 if 에 걸려서 true 가 실행됨
             // ~> 이렇게 되면 키가 중복되지 않는 hashmap 특성상 뒤의 v+1 만 실행되는 거나 마찬가지
-            // 그럼 해당 키의 value 가 중복되는 만큼 1씩 증가함
+            // 그럼 해당 키의 value 가 키가 중복되는 만큼 1씩 증가함
             // 그래서 결국 banana 를 넣고 돌리고 나서 나오는 hashmap 의 값은
             // b =1 a =3 n =2 가 됨
         }
