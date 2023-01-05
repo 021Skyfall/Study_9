@@ -20,8 +20,12 @@ public class a_removeFromBackOfNew {
 //        return arr;
         
 //        IDE 에서 2차 변형 해준거
-        if (arrayList.size() == 0) { return null; }
-        arrayList.remove(arrayList.size()-1);
-        return new ArrayList<>(arrayList); // 이렇게 기존 어레이리스트 넣고 바로 생성 가능 ㄷㄷ
+//        if (arrayList.size() == 0) { return null; }
+//        arrayList.remove(arrayList.size()-1);
+//        return new ArrayList<>(arrayList); // 이렇게 기존 어레이리스트 넣고 바로 생성 가능 ㄷㄷ
+        // 이거 보다 더 짧게
+
+        return arrayList.isEmpty() ? null : new ArrayList<>(arrayList.subList(0,arrayList.size()-1));
+        // 삼항연산자와 subList 활용 ㄷㄷㄷㄷ
     }
 }
